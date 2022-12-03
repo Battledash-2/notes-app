@@ -17,7 +17,7 @@
 			<button
 				data-bs-toggle="modal"
 				data-bs-target="#editTags"
-				class="btn btn-primary">Edit Tags</button
+				class="btn btn-outline-secondary">Edit Tags</button
 			>
 		</div>
 	</div>
