@@ -18,10 +18,10 @@
 
 <div class="container my-3">
 	<Router>
-		<Route path="/"><Dashboard {notes} {tags} /></Route>
+		<Route path="*/"><Dashboard {notes} {tags} /></Route>
 		
-        <Route path="/create"><CreateNote {notes} {tags} /></Route>
-        <Route path="/view/:noteId" let:params><ViewNote {params} {notes} {tags} /></Route>
-        <Route path="/edit/:noteId" let:params><EditNote {params} {notes} {tags} /></Route>
+        <Route path="*/create"><CreateNote {notes} {tags} /></Route>
+        <Route path="*/view/:noteId" let:params><ViewNote {params} {notes} {tags} /></Route>
+        <Route path="*/edit/:noteId" let:params><EditNote {params} {notes} {tags} /></Route>
 	</Router>
 </div>
