@@ -68,11 +68,11 @@
 		{#each filteredNotes as note}
 			<div class="col">
 				<a
-					class="h-100 text-reset text-decoration-none _card_16vt5_1 card"
+					class="item h-100 text-reset text-decoration-none _card_16vt5_1 card"
 					href={`./view/${note.id}`}
 					use:link
 				>
-					<div class="card-body item">
+					<div class="card-body">
 						<div
 							class="align-items-center justify-content-center
 								h-100 vstack gap-2 minBreakpoint-xs"
