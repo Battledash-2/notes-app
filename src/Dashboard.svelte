@@ -1,8 +1,30 @@
 <script>
 	import { link } from 'svelte-routing';
+	import { writable } from 'svelte/store';
+	import { Select } from 'svselect';
 
 	export let notes;
 	export let tags;
+
+	let searchTitle = '';
+	let searchTags = writable([]);
+
+	function getFilteredNotes() {
+		return $notes.filter(
+			(c) =>
+				c.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
+				($searchTags.length > 0
+					? c.tags.length > 0
+						? c.tags.some((o) =>
+								$searchTags.some((v) => v.key === o)
+						  )
+						: false
+					: true)
+		);
+	}
+
+	let filteredNotes = getFilteredNotes();
+	$: $notes, $searchTags, (filteredNotes = getFilteredNotes());
 </script>
 
 <nav>
@@ -21,12 +43,29 @@
 			>
 		</div>
 	</div>
-	<hr />
 </nav>
+
+<div class="d-flex gap-2 mb-2">
+	<div class="d-flex vstack" style="flex: 1;">
+		<label for="title">Title</label>
+		<input bind:value={searchTitle} id="title" class="form-control" />
+	</div>
+	<div class="d-flex vstack" style="flex: 1;">
+		<label for="tag">Tags</label>
+		<Select
+			selected={searchTags}
+			options={[...$tags]}
+			multiple
+			hideselected
+		/>
+	</div>
+</div>
+
+<hr />
 
 <main>
 	<div class="g-3 row row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 row-cols-1">
-		{#each $notes as note}
+		{#each filteredNotes as note}
 			<div class="col">
 				<a
 					class="h-100 text-reset text-decoration-none _card_16vt5_1 card"
