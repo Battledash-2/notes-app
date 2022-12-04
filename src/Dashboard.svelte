@@ -24,31 +24,38 @@
 	<hr />
 </nav>
 
-<main
-	class="d-flex gap-2 row row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 row-cols-1"
->
-	{#each $notes as note}
-		<!-- {JSON.stringify(note)} -->
-		<a
-			use:link
-			style="color: inherit;"
-			class="text-decoration-none"
-			href={`./view/${note.id}`}
-		>
-			<div
-				class="card text-decoration-none h-100 col align-items-center justify-content-center h-100 vstack gap-2 minBreakpoint-xs w-100 text-decoration-none item card-body"
-			>
-				<h4>{note.title}</h4>
-				<div class="d-flex gap-1">
-					{#each note.tags as tag}
-						<div class="badge badge-pill bg-primary">
-							{$tags.find((c) => c.key === tag)?.label}
+<main>
+	<div class="g-3 row row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 row-cols-1">
+		{#each $notes as note}
+			<div class="col">
+				<a
+					class="h-100 text-reset text-decoration-none _card_16vt5_1 card"
+					href={`./view/${note.id}`}
+					use:link
+				>
+					<div class="card-body item">
+						<div
+							class="align-items-center justify-content-center
+								h-100 vstack gap-2 minBreakpoint-xs"
+						>
+							<span class="fs-5">{note.title}</span>
+							<div
+								class="justify-content-center flex-wrap hstack gap-1
+									minBreakpoint-xs"
+							>
+								{#each note.tags as tag}
+									<span class="text-truncate badge bg-primary"
+										>{$tags.find((c) => c.key === tag)
+											.label}</span
+									>
+								{/each}
+							</div>
 						</div>
-					{/each}
-				</div>
+					</div>
+				</a>
 			</div>
-		</a>
-	{/each}
+		{/each}
+	</div>
 </main>
 
 {#if false} <span class="item" /> {/if}
