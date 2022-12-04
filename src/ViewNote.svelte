@@ -1,5 +1,5 @@
 <script>
-	import { link, Link } from 'svelte-routing';
+	import { link, navigate } from 'svelte-routing';
 	import { marked } from 'marked';
 
 	export let tags;
@@ -8,6 +8,11 @@
 
 	const noteId = params.noteId;
 	const note = $notes.find((c) => c.id === noteId);
+
+	function deleteNote() {
+		notes.update((prev) => prev.filter((n) => n.id !== noteId));
+		navigate('../');
+	}
 </script>
 
 <nav>
@@ -25,6 +30,10 @@
 		<div class="d-flex gap-1 ms-auto">
 			<a use:link href={`../edit/${noteId}/`}>
 				<button class="btn btn-primary">Edit</button>
+			</a>
+			<!-- svelte-ignore a11y-missing-attribute -->
+			<a on:click={deleteNote}>
+				<button class="btn btn-outline-danger">Delete</button>
 			</a>
 			<a use:link href="../">
 				<button class="btn btn-outline-secondary">Back</button>
