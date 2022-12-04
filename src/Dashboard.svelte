@@ -24,7 +24,7 @@
 	}
 
 	let filteredNotes = getFilteredNotes();
-	$: $notes, $searchTags, (filteredNotes = getFilteredNotes());
+	$: notes, searchTitle, searchTags, (filteredNotes = getFilteredNotes());
 </script>
 
 <nav>
