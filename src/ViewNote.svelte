@@ -42,6 +42,6 @@
 	</div>
 	<hr />
 </nav>
-<main class="container">
+<main class="container" style="white-space: pre-wrap;">
 	{@html marked(note.content)}
 </main>
